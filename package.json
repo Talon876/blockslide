@@ -1,0 +1,24 @@
+{
+  "name": "blockslide",
+  "version": "0.1.0",
+  "description": "A tile based puzzle game",
+  "author": "Talon Daniels",
+  "scripts": {
+    "dev": "webpack",
+    "deploy": "webpack --config webpack.production.config.js"
+  },
+  "dependencies": {
+    "phaser": "^2.6.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "browser-sync": "^2.17.5",
+    "browser-sync-webpack-plugin": "^1.1.3",
+    "expose-loader": "^0.7.1",
+    "webfontloader": "^1.6.26",
+    "webpack": "^1.13.2"
+  }
+}
