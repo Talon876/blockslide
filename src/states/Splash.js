@@ -10,9 +10,9 @@ export default class extends Phaser.State {
     centerGameObjects([this.loaderBg, this.loaderBar]);
 
     this.load.setPreloadSprite(this.loaderBar);
-    this.load.image('player', 'assets/images/mushroom.png');
+    this.load.spritesheet('player', 'assets/images/player.png', 64, 64, 11);
+    this.load.spritesheet('wall', 'assets/images/wall.png', 64, 64, 8);
     this.load.image('floor', 'assets/images/floor.png');
-    this.load.image('wall', 'assets/images/wall.png');
   }
 
   create () {

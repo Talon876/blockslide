@@ -10,6 +10,9 @@ export default class extends Phaser.Sprite {
     this.width = 64;
     this.height = 64;
     this.canMove = true;
+
+    this.animations.add('player', null, 22, true);
+    this.animations.play('player');
   }
 
   moveTo(x, y, onComplete = () => {}) {
