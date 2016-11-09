@@ -19,14 +19,17 @@ export default class extends Phaser.Sprite {
     if (this.canMove) {
       const dx = Math.abs(this.tileLocation().x - x);
       const dy = Math.abs(this.tileLocation().y - y);
-      const move = this.game.add.tween(this).to({
-        x: x * 64,
-        y: y * 64
-      }, (dx + dy) * playerMsPerTile);
-      move.onComplete.add(() => this.canMove = true);
-      move.onComplete.add(onComplete);
-      move.start();
-      this.canMove = false;
+      const duration = (dx + dy) * playerMsPerTile;
+      if (duration > 0) {
+        const move = this.game.add.tween(this).to({
+          x: x * 64,
+          y: y * 64
+        }, duration);
+        move.onComplete.add(() => this.canMove = true);
+        move.onComplete.add(onComplete);
+        move.start();
+        this.canMove = false;
+      }
     }
   }
 

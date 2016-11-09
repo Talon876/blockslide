@@ -46,27 +46,7 @@ export default class extends Phaser.State {
     });
     this.game.add.existing(this.player);
 
-    const keys = this.game.input.keyboard.addKeys({
-      'up': Phaser.Keyboard.W,
-      'down': Phaser.Keyboard.S,
-      'left': Phaser.Keyboard.A,
-      'right': Phaser.Keyboard.D,
-    });
-    keys.up.onDown.add(() => {
-      this.movePlayer('up');
-    });
-    keys.down.onDown.add(() => {
-      this.movePlayer('down');
-    });
-    keys.left.onDown.add(() => {
-      this.movePlayer('left');
-    });
-    keys.right.onDown.add(() => {
-      this.movePlayer('right');
-    });
-
     this.destinations = Object.keys(directions).map((dir) => this.getNextLocation(dir));
-
     this.circleG = this.game.add.graphics();
   }
 
@@ -78,15 +58,30 @@ export default class extends Phaser.State {
   }
 
   movePlayer(direction) {
-    let nextLocation = this.getNextLocation(direction);
-    this.player.moveTo(nextLocation.x, nextLocation.y, () => {
-      this.destinations = Object.keys(directions).map((dir) => this.getNextLocation(dir));
-    });
+    if (this.player.canMove) {
+      let nextLocation = this.getNextLocation(direction);
+      this.player.moveTo(nextLocation.x, nextLocation.y, () => {
+        this.destinations = Object.keys(directions).map((dir) => this.getNextLocation(dir));
+      });
+    }
   }
 
   update () {
     if (this.player.tileLocation().x === this.level.end.x && this.player.tileLocation().y === this.level.end.y) {
       this.state.start('Game', true, false, this.levelId + 1);
+    }
+
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
+      this.movePlayer('down');
+    }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+      this.movePlayer('up');
+    }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+      this.movePlayer('left');
+    }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
+      this.movePlayer('right');
     }
   }
 
