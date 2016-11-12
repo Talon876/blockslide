@@ -83,6 +83,11 @@ export default class extends Phaser.State {
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
       this.movePlayer('right');
     }
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
+      this.player.moveTo(this.level.start.x, this.level.start.y, () => {
+        this.destinations = Object.keys(directions).map((dir) => this.getNextLocation(dir));
+      });
+    }
   }
 
   render () {
