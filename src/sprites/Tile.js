@@ -4,7 +4,7 @@ const spriteFromType = (type) => {
   return {
     'wall': 'wall',
     'start': 'floor',
-    'end': 'floor',
+    'end': 'goal',
     'floor': 'floor',
   }[type];
 };
@@ -17,11 +17,6 @@ export default class extends Phaser.Sprite {
     this.width = 64;
     this.height = 64;
 
-    //TODO replace with sprite
-    if (type === 'end') {
-      this.tint = '0xcc0000';
-    };
-
     if (type === 'wall') {
       const shimmer = this.animations.add('wall', null, 28);
       const timer = this.game.time.create(false);
@@ -32,6 +27,9 @@ export default class extends Phaser.Sprite {
       });
       timer.add(this.game.rnd.between(10000, 120000), () => shimmer.play(), this);
       timer.start();
+    } else if (type === 'end') {
+      this.animations.add('goal', null, 14, true);
+      this.animations.play('goal');
     }
   }
 
