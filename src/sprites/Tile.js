@@ -17,10 +17,8 @@ export default class extends Phaser.Sprite {
     this.width = 64;
     this.height = 64;
 
-    //TODO replace with sprites
-    if (type === 'start') {
-      this.tint = '0x00cc00';
-    } else if (type === 'end') {
+    //TODO replace with sprite
+    if (type === 'end') {
       this.tint = '0xcc0000';
     };
 
