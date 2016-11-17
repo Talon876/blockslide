@@ -2,3 +2,4 @@ node_modules
 dist
 blockslide
 Graphics
+.DS_Store
