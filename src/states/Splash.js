@@ -14,6 +14,9 @@ export default class extends Phaser.State {
     this.load.spritesheet('wall', 'assets/images/wall.png', 64, 64, 8);
     this.load.spritesheet('goal', 'assets/images/goal.png', 64, 64, 8);
     this.load.image('floor', 'assets/images/floor.png');
+    for (let i = 1; i <= 100; i++) {
+      this.load.text(`level${i}`, `./assets/levels/level${i}.blks`);
+    }
   }
 
   create () {
